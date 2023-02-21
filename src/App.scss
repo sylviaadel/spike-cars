@@ -1,0 +1,81 @@
+.App {
+  padding: 1rem 2rem;
+  min-height: calc(100vh);
+  box-sizing: border-box;
+  background-color: rgb(200, 222, 225);
+}
+h1 {
+  color: rgb(0, 85, 96);
+  margin-top: 0;
+}
+.car-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 20px;
+  img {
+    width: 200px;
+    background-color: #f5f5f5;
+    border: solid 2px rgb(0, 85, 96);
+    border-radius: 10px;
+  }
+  h2 {
+    color: rgb(195, 128, 47);
+    margin-bottom: 0;
+  }
+  label {
+    display: block;
+    color: rgb(0, 85, 96);
+  }
+}
+
+.loader {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-direction: column;
+  color: rgb(0, 85, 96);
+  .spinner {
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid rgb(0, 85, 96);
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 450px) {
+  .App {
+    text-align: center;
+  }
+  .car-item {
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+  }
+}
