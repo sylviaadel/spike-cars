@@ -49,7 +49,7 @@ export default function AddCar({ onAddCar }) {
             type="radio"
             value={status}
             name="status"
-            checked={status == false}
+            checked={status === false}
             onChange={() => {
               setStatus(false);
             }}
@@ -59,7 +59,7 @@ export default function AddCar({ onAddCar }) {
             type="radio"
             value={status}
             name="status"
-            checked={status == true}
+            checked={status === true}
             onChange={() => {
               setStatus(true);
             }}
