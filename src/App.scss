@@ -4,14 +4,45 @@
   box-sizing: border-box;
   background-color: rgb(200, 222, 225);
 }
-h1 {
+h1,
+h2 {
   color: rgb(0, 85, 96);
   margin-top: 0;
+}
+#cars-page {
+  form {
+    label {
+      color: rgb(0, 85, 96);
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: block;
+    }
+    input[type="text"] {
+      margin-top: 10px;
+      height: 30px;
+      border: solid 1px #eee;
+      border-radius: 5px;
+      padding: 0 10px;
+      width: 50%;
+      display: block;
+      &:focus {
+        outline: none;
+      }
+    }
+    button {
+      background-color: rgb(0, 85, 96);
+      color: #fff;
+      height: 30px;
+      width: 100px;
+      border-radius: 5px;
+      border: 0;
+    }
+  }
 }
 .car-item {
   display: flex;
   gap: 1rem;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   img {
     width: 200px;
     background-color: #f5f5f5;
@@ -26,6 +57,11 @@ h1 {
     display: block;
     color: rgb(0, 85, 96);
   }
+}
+
+.radiobtn-custom {
+  font-weight: normal;
+  margin: 10px 0 20px;
 }
 
 .loader {
@@ -77,5 +113,17 @@ h1 {
     flex-direction: column;
     gap: 0;
     align-items: center;
+  }
+  #cars-page {
+    form {
+      text-align: center;
+      label {
+        margin: 0 auto 20px;
+        width: 100%;
+      }
+      input[type="text"] {
+        width: -webkit-fill-available;
+      }
+    }
   }
 }

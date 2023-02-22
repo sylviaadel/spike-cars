@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import "./App.scss";
-import { readDocuments } from "./scripts/firestore";
+import { readDocuments } from "./scripts/fireStore";
 import Cars from "./pages/Cars";
 import Loader from "./components/Loader";
 
 export default function App() {
   const [status, setStatus] = useState(0);
-  const [data, setData] = useState([]);
+  const [cars, setCars] = useState([]);
 
   useEffect(() => {
     loadData("cars");
@@ -19,7 +19,7 @@ export default function App() {
   }
 
   function onSuccess(data) {
-    setData(data);
+    setCars(data);
     setStatus(1);
   }
 
@@ -29,9 +29,9 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Available Cars:</h1>
+      <h1>List of Cars:</h1>
       {status === 0 && <Loader />}
-      {status === 1 && <Cars data={data} />}
+      {status === 1 && <Cars state={[cars, setCars]} />}
       {status === 2 && <p>Error ❌</p>}
     </div>
   );

@@ -1,5 +1,7 @@
 export default function CarItem({ item }) {
-  const { company, image, year, driver } = item;
+  const { company, image, year, driver, retired } = item;
+
+  const showRetired = retired ? "Already Retired" : "Currently Driving";
 
   return (
     <article className="car-item">
@@ -11,6 +13,9 @@ export default function CarItem({ item }) {
         </label>
         <label>
           <b>Year:</b> {year}
+        </label>
+        <label>
+          <b>Status:</b> {showRetired}
         </label>
       </div>
     </article>
