@@ -19,12 +19,12 @@ export async function readDocument(collectionName, documentId) {
   return result;
 }
 
-export async function removeDocument(collectionName, documentId) {
-  const reference = doc(database, collectionName, documentId);
-  const snapshot = await deleteDoc(reference);
+export async function deleteDocument(collectionName, id) {
+  const reference = doc(database, collectionName, id);
+  await deleteDoc(reference);
   //const result = { id: snapshot.id, ...snapshot.data() };
-
-  return snapshot;
+  return `${id}`;
+  //return snapshot;
 }
 
 export async function readDocuments(collectionName) {

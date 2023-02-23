@@ -1,14 +1,9 @@
-import { removeDocument } from "../scripts/fireStore";
-
-export default function CarItem({ item, onUpdate }) {
-  const { company, image, year, driver, retired } = item;
+export default function CarItem({ item, actions }) {
+  const { id, company, image, year, driver, retired } = item;
+  const [onUpdate, onDelete] = actions;
 
   const showRetired = retired ? "Already Retired" : "Currently Driving";
 
-  async function deleteCar(data) {
-    await removeDocument("cars", data);
-    //setSelectedTicket(null);
-  }
   return (
     <article className="car-item">
       <img src={image} alt={company} />
@@ -29,7 +24,7 @@ export default function CarItem({ item, onUpdate }) {
         >
           Update Driving Status
         </button>
-        <button onClick={deleteCar} className="btn-secondary">
+        <button onClick={() => onDelete(id)} className="btn-secondary">
           ❌ Delete Car
         </button>
       </div>
