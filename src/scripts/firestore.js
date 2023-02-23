@@ -1,5 +1,6 @@
-// Node modules
-import { collection, getDoc, getDocs, doc, addDoc } from "firebase/firestore";
+import { async } from "@firebase/util";
+import { doc, collection, getDoc } from "firebase/firestore";
+import { addDoc, getDocs, updateDoc, deleteDoc } from "firebase/firestore";
 import { database } from "./firebaseSetup";
 
 export async function createDocument(collectionName, data) {
@@ -18,6 +19,14 @@ export async function readDocument(collectionName, documentId) {
   return result;
 }
 
+export async function removeDocument(collectionName, documentId) {
+  const reference = doc(database, collectionName, documentId);
+  const snapshot = await deleteDoc(reference);
+  //const result = { id: snapshot.id, ...snapshot.data() };
+
+  return snapshot;
+}
+
 export async function readDocuments(collectionName) {
   const querySnapshot = await getDocs(collection(database, collectionName));
   const result = [];
@@ -29,4 +38,11 @@ export async function readDocuments(collectionName) {
   });
 
   return result;
+}
+
+export async function updateDocument(collectionName, documentToUpdate) {
+  const reference = doc(database, collectionName, documentToUpdate.id);
+
+  await updateDoc(reference, documentToUpdate);
+  return `${documentToUpdate.id}`;
 }

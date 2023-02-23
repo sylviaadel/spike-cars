@@ -56,12 +56,23 @@ h2 {
   label {
     display: block;
     color: rgb(0, 85, 96);
+    margin-bottom: 5px;
   }
 }
 
 .radiobtn-custom {
   font-weight: normal;
   margin: 10px 0 20px;
+}
+
+.btn-secondary {
+  background-color: #fff;
+  color: rgb(0, 85, 96);
+  border: 0;
+  height: 25px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 .loader {
