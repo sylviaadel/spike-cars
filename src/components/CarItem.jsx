@@ -4,6 +4,12 @@ export default function CarItem({ item, actions }) {
 
   const showRetired = retired ? "Already Retired" : "Currently Driving";
 
+  function onClickDelete() {
+    const message = "Are you sure to delete?";
+    const result = window.confirm(message);
+    if (result) onDelete(id);
+  }
+
   return (
     <article className="car-item">
       <img src={image} alt={company} />
@@ -24,7 +30,7 @@ export default function CarItem({ item, actions }) {
         >
           Update Driving Status
         </button>
-        <button onClick={() => onDelete(id)} className="btn-secondary">
+        <button onClick={() => onClickDelete(id)} className="btn-secondary">
           ❌ Delete Car
         </button>
       </div>
