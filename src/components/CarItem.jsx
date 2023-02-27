@@ -1,13 +1,25 @@
-export default function CarItem({ item, actions }) {
+import { deleteDocument, updateDocument } from "../scripts/fireStore";
+import { useCars } from "../state/CarsProvider";
+
+export default function CarItem({ item, collectionName }) {
   const { id, company, image, year, driver, retired } = item;
-  const [onUpdate, onDelete] = actions;
+  const { dispatch } = useCars();
 
   const showRetired = retired ? "Already Retired" : "Currently Driving";
 
-  function onClickDelete() {
+  async function onDelete(id) {
     const message = "Are you sure to delete?";
     const result = window.confirm(message);
-    if (result) onDelete(id);
+    if (!result) return;
+
+    await deleteDocument(collectionName, id);
+    dispatch({ type: "delete", payload: id });
+  }
+
+  async function onUpdate() {
+    const data = { ...item, retired: !retired };
+    await updateDocument(collectionName, data);
+    dispatch({ type: "update", payload: data });
   }
 
   return (
@@ -24,13 +36,10 @@ export default function CarItem({ item, actions }) {
         <label>
           <b>Status:</b> {showRetired}
         </label>
-        <button
-          onClick={() => onUpdate({ ...item, retired: !retired })}
-          className="btn-secondary"
-        >
+        <button onClick={() => onUpdate()} className="btn-secondary">
           Update Driving Status
         </button>
-        <button onClick={() => onClickDelete(id)} className="btn-secondary">
+        <button onClick={() => onDelete(id)} className="btn-secondary">
           ❌ Delete Car
         </button>
       </div>

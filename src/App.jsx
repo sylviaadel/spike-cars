@@ -3,13 +3,14 @@ import "./App.scss";
 import { readDocuments } from "./scripts/fireStore";
 import Cars from "./pages/Cars";
 import Loader from "./components/Loader";
+import { useCars } from "./state/CarsProvider";
 
 export default function App() {
+  const { dispatch } = useCars();
   const [status, setStatus] = useState(0);
-  const [cars, setCars] = useState([]);
-
+  const COLLECTION_NAME = "cars";
   useEffect(() => {
-    loadData("cars");
+    loadData(COLLECTION_NAME);
   }, []);
 
   async function loadData(collectionName) {
@@ -19,7 +20,7 @@ export default function App() {
   }
 
   function onSuccess(data) {
-    setCars(data);
+    dispatch({ type: "initializeArray", payload: data });
     setStatus(1);
   }
 
@@ -31,7 +32,7 @@ export default function App() {
     <div className="App">
       <h1>List of Cars:</h1>
       {status === 0 && <Loader />}
-      {status === 1 && <Cars state={[cars, setCars]} />}
+      {status === 1 && <Cars />}
       {status === 2 && <p>Error ❌</p>}
     </div>
   );

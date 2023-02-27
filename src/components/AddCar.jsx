@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { createDocument } from "../scripts/fireStore";
+import { useCars } from "../state/CarsProvider";
 
-export default function AddCar({ onAddCar }) {
+export default function AddCar({ collectionName }) {
+  const { dispatch } = useCars();
   const [company, setCompany] = useState("");
   const [image, setImage] = useState("");
   const [driver, setDriver] = useState("");
   const [year, setYear] = useState();
   const [status, setStatus] = useState(false);
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     const data = {
       company: company,
       image: image,
@@ -16,8 +19,10 @@ export default function AddCar({ onAddCar }) {
       retired: status,
     };
     e.preventDefault();
-    onAddCar(data);
+    const documentId = await createDocument(collectionName, data);
+    dispatch({ type: "create", payload: { id: documentId, ...data } });
   }
+
   return (
     <form onSubmit={(e) => onSubmit(e)}>
       <label>
