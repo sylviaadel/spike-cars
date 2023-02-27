@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createDocument } from "../scripts/fireStore";
+import { createDocument } from "../scripts/firestore";
 import { useCars } from "../state/CarsProvider";
 
 export default function AddCar({ collectionName }) {
