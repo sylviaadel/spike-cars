@@ -1,4 +1,4 @@
-import { deleteDocument, updateDocument } from "../scripts/fireStore";
+import { deleteDocument, updateDocument } from "../scripts/firestore";
 import { useCars } from "../state/CarsProvider";
 
 export default function CarItem({ item, collectionName }) {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.scss";
-import { readDocuments } from "./scripts/fireStore";
+import { readDocuments } from "./scripts/firestore";
 import Cars from "./pages/Cars";
 import Loader from "./components/Loader";
 import { useCars } from "./state/CarsProvider";
